@@ -1,0 +1,1 @@
+# potlako-metadata-rules
