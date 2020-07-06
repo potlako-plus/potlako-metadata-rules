@@ -14,6 +14,12 @@ class PatientCallInitialRuleGroup(CrfRuleGroup):
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.transport'])
 
+    medical_conditions = CrfRule(
+        predicate=P('medical_conditions', 'eq', YES),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_models=[f'{app_label}.medicaldiagnosis'])
+
     class Meta:
         app_label = app_label
         source_model = f'{app_label}.patientcallinitial'
