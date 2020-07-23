@@ -14,11 +14,17 @@ class PatientCallFollowUpRuleGroup(CrfRuleGroup):
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.transport'])
 
-    investigations = CrfRule(
-        predicate=P('investigation_ordered', 'eq', YES),
+    investigations_ordered = CrfRule(
+        predicate=P('investigations_ordered', 'eq', 'ordered'),
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
-        target_models=[f'{app_label}.investigations'])
+        target_models=[f'{app_label}.investigationsordered'])
+
+    investigations_resulted = CrfRule(
+        predicate=P('investigations_ordered', 'eq', 'resulted'),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_models=[f'{app_label}.investigationsresulted'])
 
     class Meta:
         app_label = app_label
