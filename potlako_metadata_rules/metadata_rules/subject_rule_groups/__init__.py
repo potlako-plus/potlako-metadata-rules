@@ -1,3 +1,4 @@
 from .missed_visit_rules import MissedVisitRuleGroup
 from .patient_call_followup_rules import PatientCallFollowUpRuleGroup
 from .patient_call_initial_rules import PatientCallInitialRuleGroup
+from .subject_visit_rules import SubjectVisitRuleGroup
