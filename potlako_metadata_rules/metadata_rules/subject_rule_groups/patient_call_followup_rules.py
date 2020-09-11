@@ -22,7 +22,7 @@ class PatientCallFollowUpRuleGroup(CrfRuleGroup):
         target_models=[f'{app_label}.investigationsordered'])
 
     investigations_resulted = CrfRule(
-        predicate=P('investigations_ordered', 'eq', 'resulted'),
+        predicate=P('investigations_ordered', 'eq', 'ordered_and_resulted'),
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.investigationsresulted'])

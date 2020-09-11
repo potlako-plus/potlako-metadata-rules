@@ -21,7 +21,7 @@ class SubjectVisitRuleGroup(CrfRuleGroup):
         target_models=[f'{app_label}.patientcallinitial',
                        f'{app_label}.symptomandcareseekingassessment',
                        f'{app_label}.patientcallfollowup',
-                       f'{app_label}.cancerdiagnosisandtreatmentassessment'])
+                       f'{app_label}.cancerdxandtx'])
 
     class Meta:
         app_label = app_label

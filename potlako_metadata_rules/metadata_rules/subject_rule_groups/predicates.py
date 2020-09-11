@@ -24,25 +24,3 @@ class Predicates(PredicateCollection):
             field_name='transport_support')
             
             return onschedule_obj.community_arm == 'Intervention' and values[0] == YES
-    
-    def func_home_visit_required(self, visit=None, **kwargs):
-        """return True if 3 missed visit forms have been completed for
-        a given visit"""
-        
-#         values = self.exists(
-#             reference_name=f'{self.app_label}.',
-#             subject_identifier=visit.subject_identifier,
-#             field_name='report_datetime')
-        
-        return False #len(values) == 3
-#     
-#     def func_missed_visit_required(self, visit=None, **kwargs):
-#         """return True if 3 missed visit forms have been completed for
-#         a given visit"""
-#         
-#         values = self.exists(
-#             reference_name=f'{self.app_label}.missedvisit',
-#             subject_identifier=visit.subject_identifier,
-#             field_name='report_datetime')
-#         
-#         return visit.reason == 'missed_quarterly_visit' #and len(values) < 3

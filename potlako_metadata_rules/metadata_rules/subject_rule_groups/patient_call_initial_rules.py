@@ -28,6 +28,13 @@ class PatientCallInitialRuleGroup(CrfRuleGroup):
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.investigationsordered'])
+    
+    investigations_resulted = CrfRule(
+        predicate=P('tests_ordered', 'eq', 'ordered_and_resulted'),
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_models=[f'{app_label}.investigationsresulted'])
+
 
     class Meta:
         app_label = app_label
