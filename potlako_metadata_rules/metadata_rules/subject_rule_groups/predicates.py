@@ -29,20 +29,20 @@ class Predicates(PredicateCollection):
         """return True if 3 missed visit forms have been completed for
         a given visit"""
         
-        values = self.exists(
-            reference_name=f'{self.app_label}.missedvisit',
-            subject_identifier=visit.subject_identifier,
-            field_name='report_datetime')
+#         values = self.exists(
+#             reference_name=f'{self.app_label}.',
+#             subject_identifier=visit.subject_identifier,
+#             field_name='report_datetime')
         
-        return len(values) == 3
-    
-    def func_missed_visit_required(self, visit=None, **kwargs):
-        """return True if 3 missed visit forms have been completed for
-        a given visit"""
-        
-        values = self.exists(
-            reference_name=f'{self.app_label}.missedvisit',
-            subject_identifier=visit.subject_identifier,
-            field_name='report_datetime')
-        
-        return visit.reason == 'missed_quarterly_visit' #and len(values) < 3
+        return False #len(values) == 3
+#     
+#     def func_missed_visit_required(self, visit=None, **kwargs):
+#         """return True if 3 missed visit forms have been completed for
+#         a given visit"""
+#         
+#         values = self.exists(
+#             reference_name=f'{self.app_label}.missedvisit',
+#             subject_identifier=visit.subject_identifier,
+#             field_name='report_datetime')
+#         
+#         return visit.reason == 'missed_quarterly_visit' #and len(values) < 3

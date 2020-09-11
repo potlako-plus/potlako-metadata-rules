@@ -1,6 +1,6 @@
 from edc_constants.constants import YES
 from edc_metadata import NOT_REQUIRED, REQUIRED
-from edc_metadata_rules import CrfRule, CrfRuleGroup, P, PF, register
+from edc_metadata_rules import CrfRule, CrfRuleGroup, P, register
 from .predicates import Predicates
 
 app_label = 'potlako_subject'

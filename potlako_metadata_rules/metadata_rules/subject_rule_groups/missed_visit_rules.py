@@ -14,12 +14,6 @@ class MissedVisitRuleGroup(CrfRuleGroup):
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.transport'])
-    
-    home_visit = CrfRule(
-        predicate=pc.func_home_visit_required,
-        consequence=REQUIRED,
-        alternative=NOT_REQUIRED,
-        target_models=[f'{app_label}.homevisit'])
 
     class Meta:
         app_label = app_label
