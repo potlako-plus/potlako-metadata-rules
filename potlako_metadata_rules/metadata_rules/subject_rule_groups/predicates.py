@@ -18,9 +18,15 @@ class Predicates(PredicateCollection):
         except onschedule_cls.DoesNotExist:
             return False
         else:
-            values = self.exists(
-            reference_name=f'{self.app_label}.patientcallinitial',
-            subject_identifier=visit.subject_identifier,
-            field_name='transport_support')
+            if visit.visit_code ==  '1000':
+                values = self.exists(
+                reference_name=f'{self.app_label}.patientcallinitial',
+                subject_identifier=visit.subject_identifier,
+                field_name='transport_support')
+            else:
+                values = self.exists(
+                reference_name=f'{self.app_label}.patientcallfollowup',
+                subject_identifier=visit.subject_identifier,
+                field_name='transport_support')
             
             return onschedule_obj.community_arm == 'Intervention' and values[0] == YES
