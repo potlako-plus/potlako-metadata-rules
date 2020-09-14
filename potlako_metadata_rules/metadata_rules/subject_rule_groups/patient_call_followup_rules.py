@@ -1,5 +1,5 @@
 from edc_metadata import NOT_REQUIRED, REQUIRED
-from edc_metadata_rules import CrfRule, CrfRuleGroup, P, register
+from edc_metadata_rules import CrfRule, CrfRuleGroup, P, PF, register
 from .predicates import Predicates
 
 app_label = 'potlako_subject'
@@ -16,7 +16,9 @@ class PatientCallFollowUpRuleGroup(CrfRuleGroup):
         target_models=[f'{app_label}.transport'])
 
     investigations_ordered = CrfRule(
-        predicate=P('investigations_ordered', 'eq', 'ordered'),
+        predicate= PF(
+            'investigations_ordered',
+            func=lambda investigations_ordered: True if investigations_ordered in ['ordered', 'ordered_and_resulted'] else False),
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.investigationsordered'])
