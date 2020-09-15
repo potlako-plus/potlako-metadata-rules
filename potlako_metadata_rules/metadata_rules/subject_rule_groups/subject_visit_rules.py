@@ -13,15 +13,6 @@ class SubjectVisitRuleGroup(CrfRuleGroup):
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.missedvisit'])
-    
-    missed_visit_not_required = CrfRule(
-        predicate=P('reason', 'eq', 'missed_quarterly_visit'),
-        consequence=NOT_REQUIRED,
-        alternative=REQUIRED,
-        target_models=[f'{app_label}.patientcallinitial',
-                       f'{app_label}.symptomandcareseekingassessment',
-                       f'{app_label}.patientcallfollowup',
-                       f'{app_label}.cancerdxandtx'])
 
     class Meta:
         app_label = app_label
