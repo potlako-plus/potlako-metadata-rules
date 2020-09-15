@@ -30,3 +30,14 @@ class Predicates(PredicateCollection):
                 field_name='transport_support')
             
             return onschedule_obj.community_arm == 'Intervention' and values[0] == YES
+        
+        
+    def func_home_visit_required(self, visit=None, **kwargs):
+        """return True if 3 missed call records exist for a 
+        particular visit"""
+        missed_call_cls = django_apps.get_model('potlako_subject.missedcallrecord')
+        
+        missed_call_records = missed_call_cls.objects.filter(
+            missed_call__subject_visit=visit)
+                    
+        return missed_call_records.count() == 3
