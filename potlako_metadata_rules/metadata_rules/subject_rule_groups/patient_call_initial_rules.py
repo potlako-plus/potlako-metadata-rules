@@ -32,7 +32,8 @@ class PatientCallInitialRuleGroup(CrfRuleGroup):
         target_models=[f'{app_label}.investigationsordered'])
     
     investigations_resulted = CrfRule(
-        predicate=P('tests_ordered', 'eq', 'ordered_and_resulted'),
+        predicate=P('tests_ordered',
+                    func=lambda tests_ordered: True if tests_ordered in ['resulted', 'ordered_and_resulted'] else False),
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.investigationsresulted'])
