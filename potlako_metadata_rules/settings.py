@@ -38,18 +38,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'edc_reference.apps.AppConfig',
     'edc_metadata_rules.apps.AppConfig',
+    'potlako_reference.apps.AppConfig',
+    'potlako_metadata_rules.apps.EdcVisitTrackingAppConfig',
+    'potlako_metadata_rules.apps.EdcMetadataAppConfig',
+    'potlako_metadata_rules.apps.EdcFacilityAppConfig',
     'potlako_metadata_rules.apps.AppConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'edc_dashboard.middleware.DashboardMiddleware',
+    'edc_subject_dashboard.middleware.DashboardMiddleware',
 ]
 
 ROOT_URLCONF = 'potlako_metadata_rules.urls'

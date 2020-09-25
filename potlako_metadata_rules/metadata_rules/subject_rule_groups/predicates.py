@@ -18,7 +18,7 @@ class Predicates(PredicateCollection):
         except onschedule_cls.DoesNotExist:
             return False
         else:
-            if visit.visit_code ==  '1000':
+            if visit.visit_code ==  '1000' and visit.visit_code_sequence ==  0:
                 values = self.exists(
                 reference_name=f'{self.app_label}.patientcallinitial',
                 subject_identifier=visit.subject_identifier,
