@@ -9,7 +9,7 @@ pc = Predicates()
 class SubjectVisitRuleGroup(CrfRuleGroup):
 
     missed_visit = CrfRule(
-        predicate=P('reason', 'eq', 'missed_quarterly_visit'),
+        predicate=P('reason', 'eq', 'missed_visit'),
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.missedvisit'])

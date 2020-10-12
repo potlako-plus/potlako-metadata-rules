@@ -1,6 +1,5 @@
-from edc_constants.constants import YES
 from edc_metadata import NOT_REQUIRED, REQUIRED
-from edc_metadata_rules import CrfRule, CrfRuleGroup, P, register
+from edc_metadata_rules import CrfRule, CrfRuleGroup, register
 from .predicates import Predicates
 
 app_label = 'potlako_subject'
@@ -10,7 +9,7 @@ pc = Predicates()
 class MissedVisitRuleGroup(CrfRuleGroup):
 
     transport = CrfRule(
-        predicate=P('transport_support', 'eq', YES),
+        predicate=pc.func_intervention_arm,
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.transport'])
