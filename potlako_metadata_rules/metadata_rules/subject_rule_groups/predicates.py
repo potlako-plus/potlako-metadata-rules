@@ -1,6 +1,8 @@
 from django.apps import apps as django_apps
 from edc_metadata_rules import PredicateCollection
 from edc_constants.constants import YES
+from edc_reference.models import Reference
+
 
 class Predicates(PredicateCollection):
     
@@ -19,17 +21,23 @@ class Predicates(PredicateCollection):
             return False
         else:
             if visit.visit_code ==  '1000' and visit.visit_code_sequence ==  0:
-                values = self.exists(
+                transport_support = self.exists(
                 reference_name=f'{self.app_label}.patientcallinitial',
                 subject_identifier=visit.subject_identifier,
-                field_name='transport_support')
+                field_name='transport_support',
+                timepoint=visit.visit_code)[0]
             else:
-                values = self.exists(
-                reference_name=f'{self.app_label}.patientcallfollowup',
-                subject_identifier=visit.subject_identifier,
-                field_name='transport_support')
+                patient_fu = Reference.objects.filter(
+                model=f'{self.app_label}.patientcallfollowup',
+                identifier=visit.appointment.subject_identifier,
+                report_datetime__gt=visit.report_datetime,
+                timepoint=visit.visit_code).order_by(
+                '-report_datetime').first()
+                
+                transport_support = [patient_fu.transport_support,] if patient_fu else None
+                    
             
-            return onschedule_obj.community_arm == 'Intervention' and values[0] == YES
+            return onschedule_obj.community_arm == 'Intervention' and transport_support == YES
         
         
     def func_home_visit_required(self, visit=None, **kwargs):
