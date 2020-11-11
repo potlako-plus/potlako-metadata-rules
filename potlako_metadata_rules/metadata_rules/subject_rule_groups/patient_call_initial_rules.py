@@ -12,7 +12,7 @@ class PatientCallInitialRuleGroup(CrfRuleGroup):
     
 
     transport = CrfRule(
-        predicate=pc.func_intervention_arm,
+        predicate=pc.func_transport_support_required,
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.transport'])

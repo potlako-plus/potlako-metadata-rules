@@ -9,7 +9,7 @@ class Predicates(PredicateCollection):
     app_label = 'potlako_subject'
     visit_model = f'{app_label}.subjectvisit'
     
-    def func_intervention_arm(self, visit=None, **kwargs):
+    def func_transport_support_required(self, visit=None, **kwargs):
         """return True if participant on Intervention arm and 
         transport_required==YES"""
         onschedule_cls = django_apps.get_model('potlako_subject.onschedule')
@@ -34,7 +34,7 @@ class Predicates(PredicateCollection):
                 timepoint=visit.visit_code).order_by(
                 '-report_datetime').first()
                 
-                transport_support = [patient_fu.transport_support,] if patient_fu else None
+                transport_support = patient_fu.transport_support if patient_fu else None
                     
             
             return onschedule_obj.community_arm == 'Intervention' and transport_support == YES
