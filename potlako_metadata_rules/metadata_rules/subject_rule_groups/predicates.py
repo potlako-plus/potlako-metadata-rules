@@ -30,12 +30,13 @@ class Predicates(PredicateCollection):
                 patient_fu = Reference.objects.filter(
                 model=f'{self.app_label}.patientcallfollowup',
                 identifier=visit.appointment.subject_identifier,
-                report_datetime__gt=visit.report_datetime,
-                timepoint=visit.visit_code).order_by(
-                '-report_datetime').first()
+                report_datetime__gte=visit.report_datetime,
+                timepoint=visit.visit_code,
+                field_name='transport_support').order_by(
+                'report_datetime')
                 
-                transport_support = patient_fu.transport_support if patient_fu else None
-                    
+                transport_support = patient_fu[0].value if patient_fu else None
+
             
             return onschedule_obj.community_arm == 'Intervention' and transport_support == YES
         
