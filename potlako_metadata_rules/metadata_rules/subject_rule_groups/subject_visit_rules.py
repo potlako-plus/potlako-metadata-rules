@@ -5,6 +5,7 @@ from .predicates import Predicates
 app_label = 'potlako_subject'
 pc = Predicates()
 
+
 @register()
 class SubjectVisitRuleGroup(CrfRuleGroup):
 
@@ -13,6 +14,12 @@ class SubjectVisitRuleGroup(CrfRuleGroup):
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.missedvisit'])
+
+    missed_visit_followup = CrfRule(
+        predicate=P('reason', 'eq', 'missed_visit'),
+        consequence=NOT_REQUIRED,
+        alternative=REQUIRED,
+        target_models=[f'{app_label}.patientcallfollowup'])
 
     class Meta:
         app_label = app_label
