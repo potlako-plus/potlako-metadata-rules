@@ -16,17 +16,19 @@ class PatientCallFollowUpRuleGroup(CrfRuleGroup):
         target_models=[f'{app_label}.transport'])
 
     investigations_ordered = CrfRule(
-        predicate= PF(
+        predicate=PF(
             'investigations_ordered',
-            func=lambda investigations_ordered: True if investigations_ordered in ['ordered', 'ordered_and_resulted'] else False),
+            func=lambda investigations_ordered: True if investigations_ordered in [
+                'ordered', 'ordered_and_resulted'] else False),
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.investigationsordered'])
 
     investigations_resulted = CrfRule(
         predicate=PF(
-            'investigations_ordered', 
-            func=lambda investigations_ordered: True if investigations_ordered in ['resulted', 'ordered_and_resulted'] else False),
+            'investigations_ordered',
+            func=lambda investigations_ordered: True if investigations_ordered in [
+                'resulted', 'ordered_and_resulted'] else False),
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=[f'{app_label}.investigationsresulted'])
