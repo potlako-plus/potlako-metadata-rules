@@ -5,6 +5,7 @@ from .predicates import Predicates
 app_label = 'potlako_subject'
 pc = Predicates()
 
+
 @register()
 class MissedVisitRuleGroup(CrfRuleGroup):
 
